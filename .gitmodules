@@ -1,0 +1,3 @@
+[submodule "GroundedSAM_OccNeRF"]
+	path = GroundedSAM_OccNeRF
+	url = https://github.com/JunchengYan/GroundedSAM_OccNeRF.git
