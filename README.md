@@ -1,6 +1,6 @@
 # GaussianOcc
 
-**[Project Page](https://ganwanshui.github.io/GaussianOcc/) | [Paper](https://ganwanshui.github.io/GaussianOcc/) | [Data](https://github.com/GANWANSHUI/GaussianOcc)**
+**[Project Page](https://ganwanshui.github.io/GaussianOcc/) | [Arxiv](http://arxiv.org/abs/2408.11447) | [Data](https://github.com/GANWANSHUI/GaussianOcc)**
 
 > GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting
 >
