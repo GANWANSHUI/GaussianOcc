@@ -2,13 +2,13 @@
 
 **[Project Page](https://ganwanshui.github.io/GaussianOcc/) | [Arxiv](http://arxiv.org/abs/2408.11447) | [Data](https://github.com/GANWANSHUI/GaussianOcc)**
 
-> GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting
->
-> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/)
+> GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting <br>
+> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/)<br>
+> :book: 中文解读（第三方）: [自动驾驶之心](https://zhuanlan.zhihu.com/p/716013147?utm_psn=1810287323511918592)
 
 **Updates:**
 
-- `🔔 2024/08/22` Paper release and the code will be updated soon.
+- `🔔 2024/08/22` Paper release and the code will be released next week.
 
 ## 🕹 Demos
 
@@ -163,6 +163,14 @@ Recent related works:
 
 If you find this repository/work helpful in your research, welcome to cite the paper and give a ⭐.
 
-```bibtex
-
+```
+@misc{GaussianOcc,
+      title={GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting}, 
+      author={Wanshui Gan and Fang Liu and Hongbin Xu and Ningkai Mo and Naoto Yokoya},
+      year={2024},
+      eprint={2408.11447},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2408.11447}, 
+}
 ```
