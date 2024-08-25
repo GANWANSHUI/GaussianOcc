@@ -1,0 +1,41 @@
+model_name = nusc-sem/
+dataset = nusc
+dataroot = data/nuscenes
+log_dir=logs
+self_supervise = self
+volume_depth = True
+use_fix_mask=False  
+eval_occ = True
+use_semantic = True
+semantic_classes = 18
+semantic_loss_weight = 0.05
+last_free = True
+max_depth_test=80
+use_fp16 = True
+render_type = prob
+contracted_coord = True
+contracted_ratio = 0.66667
+voxels_size = [24, 300, 300]
+real_size = [-40, 40, -40, 40, -1, 5.4]
+infinite_range = True
+auxiliary_frame = False
+semantic_sample_ratio = 0.25
+
+disparity_smoothness = 0.001
+weight_entropy_last = 0.01
+weight_distortion = 0.01
+
+dataset = nusc
+dataroot = data/nuscenes
+min_depth = 0.1
+max_depth = 80
+batch_size = 6
+num_epochs = 12
+eval_frequency = 1000
+
+height = 384
+width = 640
+render_h = 180
+render_w = 320
+height_ori = 900
+width_ori = 1600

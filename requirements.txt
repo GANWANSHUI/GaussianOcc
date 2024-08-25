@@ -1,0 +1,8 @@
+tqdm
+mayavi
+matplotlib
+nuscenes-devkit
+configargparse
+open3d==0.17.0
+opencv-python~=4.6.0
+torch_efficient_distloss

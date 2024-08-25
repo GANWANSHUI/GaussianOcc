@@ -8,6 +8,7 @@
 
 **Updates:**
 
+- `🔔 2024/08/25` Release the code in stage 2 for both training and evaluation. Code may not be cleaned thoroughly, so feel free to open an issue if any question.
 - `🔔 2024/08/22` Paper release and the code will be released next week.
 
 ## 🕹 Demos
@@ -41,7 +42,7 @@ Method Overview:
 <img src="./assets/overview.png" width="720px">
 </p>
 
-<!-- 
+
 ## 🔧 Installation
 
 Clone this repo and install the dependencies:
@@ -53,6 +54,12 @@ conda create -n gsocc python=3.8
 conda activate gsocc
 conda install pytorch==1.9.1 torchvision==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
 pip install -r requirements.txt
+
+cd submodule/diff-gaussian-rasterization-confidence
+pip install .
+
+cd submodule/diff-gaussian-rasterization-confidence-semantic
+pip install .
 ```
 
 Our code is tested with Python 3.8, PyTorch 1.9.1 and CUDA 11.3 and can be adapted to other versions of PyTorch and CUDA with minor modifications.
@@ -81,7 +88,7 @@ ln -s  path_to_ddad GaussianOcc/data
       ```
 4. Download the generated 2D semantic labels from [semantic_labels](https://cloud.tsinghua.edu.cn/d/d964ae46e28e473da255/) and extract the data to `./data/nuscenes/`. We recommend that you use `pigz` to speed up the process.
 
-5. Download the pretrained weights of our model from [Checkpoints](https://ganwanshui.github.io/GaussianOcc/) and move them to `./ckpts/`.
+5. Download the pretrained weights of our model from [Link](https://pan.baidu.com/s/1rUvOZeVGS_2uyeDNISyF9w), the password is `778c`, and move them to `./ckpts/`.
 
 6. (Optional) If you want to generate the 2D semantic labels by yourself, please refer to the `README.md` in [GroundedSAM_OccNeRF](https://github.com/JunchengYan/GroundedSAM_OccNeRF). The  dataset index pickle file `nuscenes_infos_train.pkl` is from [SurroundOcc](https://cloud.tsinghua.edu.cn/d/8dcb547238144d08a0bb/) and should be placed under `./data/nuscenes/`.
 
@@ -90,13 +97,12 @@ ln -s  path_to_ddad GaussianOcc/data
 * Please download [metadata](https://cloud.tsinghua.edu.cn/f/50cb1ea5b1344db8b51c/?dl=1) of DDAD and place these pkl files in `datasets/ddad`.
 * We provide annotated self-occlusion masks for each sequences. Please download [masks](https://cloud.tsinghua.edu.cn/f/c654cd272a6a42c885f9/?dl=1) and place them in `data/ddad/mask`.
 * Export depth maps for evaluation 
+* the ddad semantic map generation is similar to nsucenes above
 ```bash
 cd tools
 python export_gt_depth_ddad.py val
 ```
-
 The Final folder structure should be like:
-
 ```
 GaussianOcc/
 ├── ckpts/
@@ -130,20 +136,28 @@ GaussianOcc/
 |   |   |   |── ...
 ```
 </details>
- -->
+
 
 ## 🚀 Quick Start
 
 ### Training and Evaluation
 
-Train GaussianOcc with semantic supervision:
+<!-- Train GaussianOcc with semantic supervision: -->
 
 ```bash
-python -m torch.distributed.launch --nproc_per_node=8 run.py --config configs/nusc-sem-gs.txt
-
-python -m torch.distributed.launch --nproc_per_node=8 run.py --config configs/ddad-sem-gs.txt
+sh run_gs_occ.sh
 ``` 
 
+### Visualization
+Visualize the semantic occupancy prediction:
+
+```bash
+python tools/export_vis_data.py  # You can modify this file to choose scenes you want to visualize. Otherwise, all validation scenes will be visualized.
+
+sh run_vis.sh
+
+python gen_scene_video.py scene_folder_generated_by_the_above_command --sem_only
+```
 
 
 ## 🙏 Acknowledgement
@@ -164,13 +178,10 @@ Recent related works:
 If you find this repository/work helpful in your research, welcome to cite the paper and give a ⭐.
 
 ```
-@misc{GaussianOcc,
-      title={GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting}, 
-      author={Wanshui Gan and Fang Liu and Hongbin Xu and Ningkai Mo and Naoto Yokoya},
-      year={2024},
-      eprint={2408.11447},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2408.11447}, 
+@article{gan2024gaussianocc,
+  title={GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting},
+  author={Gan, Wanshui and Liu, Fang and Xu, Hongbin and Mo, Ningkai and Yokoya, Naoto},
+  journal={arXiv preprint arXiv:2408.11447},
+  year={2024}
 }
 ```
