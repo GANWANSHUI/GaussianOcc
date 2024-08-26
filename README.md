@@ -88,7 +88,7 @@ ln -s  path_to_ddad GaussianOcc/data
       ```
 4. Download the generated 2D semantic labels from [semantic_labels](https://cloud.tsinghua.edu.cn/d/d964ae46e28e473da255/) and extract the data to `./data/nuscenes/`. We recommend that you use `pigz` to speed up the process.
 
-5. Download the pretrained weights of our model from [Link](https://pan.baidu.com/s/1rUvOZeVGS_2uyeDNISyF9w), the password is `778c`, and move them to `./ckpts/`.
+5. Download the pretrained weights of our model from [Google](https://drive.google.com/drive/folders/1ojxpFjj1bG4s5EiteLsqFnAz7liDhgq7) or [百度](https://pan.baidu.com/s/1rUvOZeVGS_2uyeDNISyF9w), the password is `778c`, and move them to `./ckpts/`.
 
 6. (Optional) If you want to generate the 2D semantic labels by yourself, please refer to the `README.md` in [GroundedSAM_OccNeRF](https://github.com/JunchengYan/GroundedSAM_OccNeRF). The  dataset index pickle file `nuscenes_infos_train.pkl` is from [SurroundOcc](https://cloud.tsinghua.edu.cn/d/8dcb547238144d08a0bb/) and should be placed under `./data/nuscenes/`.
 
@@ -97,7 +97,7 @@ ln -s  path_to_ddad GaussianOcc/data
 * Please download [metadata](https://cloud.tsinghua.edu.cn/f/50cb1ea5b1344db8b51c/?dl=1) of DDAD and place these pkl files in `datasets/ddad`.
 * We provide annotated self-occlusion masks for each sequences. Please download [masks](https://cloud.tsinghua.edu.cn/f/c654cd272a6a42c885f9/?dl=1) and place them in `data/ddad/mask`.
 * Export depth maps for evaluation 
-* the ddad semantic map generation is similar to nsucenes above
+* The ddad semantic map generation is similar to nuscenes above
 ```bash
 cd tools
 python export_gt_depth_ddad.py val
@@ -175,7 +175,7 @@ Recent related works:
 
 ## 📃 Bibtex
 
-If you find this repository/work helpful in your research, welcome to cite the paper and give a ⭐.
+If you find this repository/work helpful in your research, welcome to cite our papers and give a ⭐.
 
 ```
 @article{gan2024gaussianocc,
@@ -183,5 +183,17 @@ If you find this repository/work helpful in your research, welcome to cite the p
   author={Gan, Wanshui and Liu, Fang and Xu, Hongbin and Mo, Ningkai and Yokoya, Naoto},
   journal={arXiv preprint arXiv:2408.11447},
   year={2024}
+
+
+@article{gan2024comprehensive,
+  title={A Comprehensive Framework for 3D Occupancy Estimation in Autonomous Driving},
+  author={Gan, Wanshui and Mo, Ningkai and Xu, Hongbin and Yokoya, Naoto},
+  journal={IEEE Transactions on Intelligent Vehicles},
+  year={2024},
+  publisher={IEEE}
 }
+}
+
+
+
 ```
