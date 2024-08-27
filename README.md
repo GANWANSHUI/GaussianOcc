@@ -49,7 +49,7 @@ Clone this repo and install the dependencies:
 
 ```bash
 git clone --recurse-submodules https://github.com/GANWANSHUI/GaussianOcc.git
-cd OccNeRF
+cd GaussianOcc
 conda create -n gsocc python=3.8
 conda activate gsocc
 conda install pytorch==1.9.1 torchvision==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
@@ -183,7 +183,7 @@ If you find this repository/work helpful in your research, welcome to cite our p
   author={Gan, Wanshui and Liu, Fang and Xu, Hongbin and Mo, Ningkai and Yokoya, Naoto},
   journal={arXiv preprint arXiv:2408.11447},
   year={2024}
-
+}
 
 @article{gan2024comprehensive,
   title={A Comprehensive Framework for 3D Occupancy Estimation in Autonomous Driving},
@@ -192,8 +192,4 @@ If you find this repository/work helpful in your research, welcome to cite our p
   year={2024},
   publisher={IEEE}
 }
-}
-
-
-
 ```
