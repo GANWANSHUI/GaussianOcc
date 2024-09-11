@@ -377,7 +377,7 @@ class Runer:
             source3 = 'run.py'
             source4 = 'options.py'
             source5 = 'run_vis.py'
-            source10 = 'run.sh'
+            source10 = 'run_gs_occ.sh'
 
             source6 = 'configs'
             source7 = 'networks'

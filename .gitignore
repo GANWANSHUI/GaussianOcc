@@ -12,6 +12,7 @@ networks/networks
 # tools
 # utils
 run.sh
+install.sh
 # *.py
 # *.txt
 .DS_Store
