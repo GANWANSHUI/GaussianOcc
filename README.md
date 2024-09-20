@@ -2,21 +2,24 @@
 
 **[Project Page](https://ganwanshui.github.io/GaussianOcc/) | [Arxiv](http://arxiv.org/abs/2408.11447) | [Data](https://github.com/GANWANSHUI/GaussianOcc)**
 
-> GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting <br>
-> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/)<br>
-> :book: 中文解读（第三方）: [自动驾驶之心](https://zhuanlan.zhihu.com/p/716013147?utm_psn=1810287323511918592)
+> GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting `<br>`
+> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/) `<br>`
+> 📖 中文解读（第三方）: [自动驾驶之心](https://zhuanlan.zhihu.com/p/716013147?utm_psn=1810287323511918592)
 
 **Updates:**
 
+- `🔔 2024/09/20` Release the code for generating DDAD 2D semantic dataset.
 - `🔔 2024/08/25` Release the code in stage 2 for both training and evaluation. Code may not be cleaned thoroughly, so feel free to open an issue if any question.
 - `🔔 2024/08/22` Paper release and the code will be released next week.
 
 ## 🕹 Demos
 
-Demos are a little bit large; please wait a moment to load them. 
+Demos are a little bit large; please wait a moment to load them.
 
 ## 3D Occupancy and Render Depth:
+
 ### nuScenes:
+
 <p align='center'>
 <img src="./assets/nuscenes.gif" width="480px">
 <img src="./assets/bar.png" width="480px">
@@ -42,7 +45,6 @@ Method Overview:
 <img src="./assets/overview.png" width="720px">
 </p>
 
-
 ## 🔧 Installation
 
 Clone this repo and install the dependencies:
@@ -65,6 +67,7 @@ pip install .
 Our code is tested with Python 3.8, PyTorch 1.9.1 and CUDA 11.3 and can be adapted to other versions of PyTorch and CUDA with minor modifications.
 
 ## 🏗 Dataset Preparation
+
 <details>
 <summary> Click for more  </summary>
 You can add the softlink if you already had the related dataset, such as:
@@ -78,31 +81,36 @@ ln -s  path_to_ddad GaussianOcc/data
 ### nuScenes
 
 1. Download nuScenes V1.0 full dataset data from [nuScenes](https://www.nuscenes.org/nuscenes#download) and link the data folder to `./data/nuscenes/nuscenes/`.
-
 2. Download the ground truth occupancy labels from [Occ3d](https://tsinghua-mars-lab.github.io/Occ3D/) and unzip the `gts.tar.gz` to `./data/nuscenes/gts`. Note that we only use the 3d occupancy labels for validation.
-
 3. Generate the ground truth depth maps for validation:
 
-      ```bash
-      python tools/export_gt_depth_nusc.py
-      ```
+   ```bash
+   python tools/export_gt_depth_nusc.py
+   ```
 4. Download the generated 2D semantic labels from [semantic_labels](https://cloud.tsinghua.edu.cn/d/d964ae46e28e473da255/) and extract the data to `./data/nuscenes/`. We recommend that you use `pigz` to speed up the process.
-
-5. Download the pretrained weights of our model from [Google](https://drive.google.com/drive/folders/1ojxpFjj1bG4s5EiteLsqFnAz7liDhgq7) or [百度](https://pan.baidu.com/s/1rUvOZeVGS_2uyeDNISyF9w), the password is `778c`, and move them to `./ckpts/`.
-
-6. (Optional) If you want to generate the 2D semantic labels by yourself, please refer to the `README.md` in [GroundedSAM_OccNeRF](https://github.com/JunchengYan/GroundedSAM_OccNeRF). The  dataset index pickle file `nuscenes_infos_train.pkl` is from [SurroundOcc](https://cloud.tsinghua.edu.cn/d/8dcb547238144d08a0bb/) and should be placed under `./data/nuscenes/`.
+5. Download the pretrained weights of our model from [Google](https://drive.google.com/drive/folders/1ojxpFjj1bG4s5EiteLsqFnAz7liDhgq7) or [百度云](https://pan.baidu.com/s/1rUvOZeVGS_2uyeDNISyF9w), the password is `778c`, and move them to `./ckpts/`.
+6. (Optional) If you want to generate the nuScenes 2D semantic labels by yourself, please refer to the `README.md` in [GroundedSAM_OccNeRF](https://github.com/JunchengYan/GroundedSAM_OccNeRF). The  dataset index pickle file `nuscenes_infos_train.pkl` is from [SurroundOcc](https://cloud.tsinghua.edu.cn/d/8dcb547238144d08a0bb/) and should be placed under `./data/nuscenes/`.
 
 ### DDAD
+
 * Please download the official [DDAD dataset](https://tri-ml-public.s3.amazonaws.com/github/DDAD/datasets/DDAD.tar) and place them under `data/ddad/raw_data`. You may refer to official [DDAD repository](https://github.com/TRI-ML/DDAD) for more info and instructions.
 * Please download [metadata](https://cloud.tsinghua.edu.cn/f/50cb1ea5b1344db8b51c/?dl=1) of DDAD and place these pkl files in `datasets/ddad`.
 * We provide annotated self-occlusion masks for each sequences. Please download [masks](https://cloud.tsinghua.edu.cn/f/c654cd272a6a42c885f9/?dl=1) and place them in `data/ddad/mask`.
-* Export depth maps for evaluation 
+* Export depth maps for evaluation
 * The ddad semantic map generation is similar to nuscenes above
+
 ```bash
 cd tools
 python export_gt_depth_ddad.py val
 ```
+
+- (Optional) If you want to generate the DDAD 2D semantic labels by yourself, we have provided generation code and script based on [GroundedSAM_OccNeRF](https://github.com/JunchengYan/GroundedSAM_OccNeRF).
+  The running requirement is the same as GroundedSAM_OccNeRF. First, you need copy  ` tools/groundedsam_generate_sem_nusc.py` and `tools/run_generate_ddad_semantic.sh` in GroundedSAM_OccNeRF folder (make sure the GroundedSAM_OccNeRF folder is under the GaussianOcc main folder). Then you can generate the DDAD semantic dataset by running `tools/run_generate_ddad_semantic.sh`.
+
+
+
 The Final folder structure should be like:
+
 ```
 GaussianOcc/
 ├── ckpts/
@@ -135,8 +143,8 @@ GaussianOcc/
 │   │   │   │── 000000
 |   |   |   |── ...
 ```
-</details>
 
+</details>
 
 ## 🚀 Quick Start
 
@@ -146,9 +154,10 @@ GaussianOcc/
 
 ```bash
 sh run_gs_occ.sh
-``` 
+```
 
 ### Visualization
+
 Visualize the semantic occupancy prediction:
 
 ```bash
@@ -159,10 +168,10 @@ sh run_vis.sh
 python gen_scene_video.py scene_folder_generated_by_the_above_command --sem_only
 ```
 
-
 ## 🙏 Acknowledgement
 
 Many thanks to these excellent projects:
+
 - [SimpleOccupancy](https://github.com/GANWANSHUI/SimpleOccupancy)
 - [OccNeRF](https://github.com/LinShan-Bin/OccNeRF)
 - [SelfOcc](https://github.com/huang-yh/SelfOcc)
@@ -170,6 +179,7 @@ Many thanks to these excellent projects:
 - [SurroundDepth](https://github.com/weiyithu/SurroundDepth)
 
 Recent related works:
+
 - [GaussianFormer](https://github.com/huang-yh/GaussianFormer)
 - [GaussianBeV](https://arxiv.org/pdf/2407.14108)
 
@@ -192,3 +202,4 @@ If you find this repository/work helpful in your research, welcome to cite our p
   year={2024},
   publisher={IEEE}
 }
+```
