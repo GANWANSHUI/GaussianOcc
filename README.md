@@ -60,6 +60,9 @@ pip install .
 
 cd submodule/diff-gaussian-rasterization-confidence-semantic
 pip install .
+
+cd submodule/simple-knn
+pip install .
 ```
 
 Our code is tested with Python 3.8, PyTorch 1.9.1 and CUDA 11.3 and can be adapted to other versions of PyTorch and CUDA with minor modifications.

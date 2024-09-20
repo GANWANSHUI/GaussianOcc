@@ -1,0 +1,4 @@
+# ninja log v5
+1	18498	1704199564000000000	/home/wsgan/project/gs/FSGS/submodules/simple-knn/build/temp.linux-x86_64-cpython-38/ext.o	8f8b512f22202e09
+1	48220	1704199594000000000	/home/wsgan/project/gs/FSGS/submodules/simple-knn/build/temp.linux-x86_64-cpython-38/simple_knn.o	e160c9a37f125bc8
+1	159204	1704199705000000000	/home/wsgan/project/gs/FSGS/submodules/simple-knn/build/temp.linux-x86_64-cpython-38/spatial.o	99df47483e8eeaee
