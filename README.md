@@ -2,8 +2,8 @@
 
 **[Project Page](https://ganwanshui.github.io/GaussianOcc/) | [Arxiv](http://arxiv.org/abs/2408.11447) | [Data](https://github.com/GANWANSHUI/GaussianOcc)**
 
-> GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting<br>
-> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/)<br>
+> GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting`<br>`
+> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/)`<br>`
 > 📖 中文解读（第三方）: [自动驾驶之心](https://zhuanlan.zhihu.com/p/716013147?utm_psn=1810287323511918592)
 
 **Updates:**
@@ -104,10 +104,10 @@ cd tools
 python export_gt_depth_ddad.py val
 ```
 
-- (Optional) If you want to generate the DDAD 2D semantic labels by yourself, we have provided generation code and script based on [GroundedSAM_OccNeRF](https://github.com/JunchengYan/GroundedSAM_OccNeRF).
-  The running requirement is the same as GroundedSAM_OccNeRF. First, you need copy  ` tools/groundedsam_generate_sem_nusc.py` and `tools/run_generate_ddad_semantic.sh` in GroundedSAM_OccNeRF folder (make sure the GroundedSAM_OccNeRF folder is under the GaussianOcc main folder). Then you can generate the DDAD semantic dataset by running `tools/run_generate_ddad_semantic.sh`.
-
-
+- (Optional) If you want to generate the DDAD 2D semantic labels by yourself, we have provided generation code and script based on [GroundedSAM_OccNeRF](https://github.com/JunchengYan/GroundedSAM_OccNeRF). The running requirement is the same as GroundedSAM_OccNeRF.
+  First, please copy  ` tools/groundedsam_generate_sem_nusc.py` and `tools/run_generate_ddad_semantic.sh` to GroundedSAM_OccNeRF folder (make sure the GroundedSAM_OccNeRF folder is under the GaussianOcc main folder, i.e., `GaussianOcc/GroundedSAM_OccNeRF`).
+  Second, please create a folder named  `configs` under GroundedSAM_OccNeRF folder, and copy the config file,`GaussianOcc/configs/ddad-generate-2d-semantic.txt` to `GaussianOcc/GroundedSAM_OccNeRF/configs`.
+  Then you can generate the DDAD semantic dataset by running  `GaussianOcc/GroundedSAM_OccNeRF/run_generate_ddad_semantic.sh`.
 
 The Final folder structure should be like:
 
