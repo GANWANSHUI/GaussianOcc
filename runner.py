@@ -237,7 +237,7 @@ class Runer:
         else:
             nusc = None
             
-        # pdb.set_trace()
+     
         train_dataset = self.dataset(self.opt,
                                      self.opt.height, self.opt.width,
                                      self.opt.frame_ids, num_scales=self.num_scales, is_train=True,

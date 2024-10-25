@@ -23,7 +23,6 @@ Demos are a little bit large; please wait a moment to load them.
 </p>
 
 ### DDAD:
-
 <p align='center'>
 <img src="./assets/ddad.gif" width="480px">
 <img src="./assets/bar.png" width="480px">
