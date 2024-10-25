@@ -1222,6 +1222,7 @@ class Runer:
                     semantic_loss += self.sem_criterion(pred_semantic[ddad_mask], target_semantic[ddad_mask].long())
                 
                 else:
+                    # pdb.set_trace()
                     semantic_loss += self.sem_criterion(pred_semantic.view(-1, self.opt.semantic_classes), target_semantic.view(-1).long())
                 
                 semantic_loss = self.opt.semantic_loss_weight * semantic_loss

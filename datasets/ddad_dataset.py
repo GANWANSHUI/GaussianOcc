@@ -75,6 +75,7 @@ class DDADDataset(MonoDataset):
         with open('datasets/ddad/info_{}.pkl'.format(self.split), 'rb') as f:
 
             self.info = pickle.load(f)
+            # info = pickle.load('/home/wsgan/project/bev/GaussianOcc/datasets/ddad/info_train.pkl')
 
         self.camera_ids = ['front', 'front_left', 'back_left', 'back', 'back_right', 'front_right']
         self.camera_names = ['CAMERA_01', 'CAMERA_05', 'CAMERA_07', 'CAMERA_09', 'CAMERA_08', 'CAMERA_06']

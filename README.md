@@ -89,7 +89,7 @@ ln -s  path_to_ddad GaussianOcc/data
       ```bash
       python tools/export_gt_depth_nusc.py
       ```
-4. Download the generated 2D semantic labels from [semantic_labels](https://cloud.tsinghua.edu.cn/d/d964ae46e28e473da255/) and extract the data to `./data/nuscenes/`. We recommend that you use `pigz` to speed up the process.
+4. Download the generated 2D semantic labels from [semantic_labels](https://cloud.tsinghua.edu.cn/d/564c9ac19b5f4b54a774/) and extract the data to `./data/nuscenes/`. We recommend that you use `pigz` to speed up the process.
 
 5. Download the pretrained weights of our model from [Google](https://drive.google.com/drive/folders/1ojxpFjj1bG4s5EiteLsqFnAz7liDhgq7) or [百度](https://pan.baidu.com/s/1rUvOZeVGS_2uyeDNISyF9w), the password is `778c`, and move them to `./ckpts/`.
 
