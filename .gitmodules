@@ -1,3 +1,6 @@
 [submodule "GroundedSAM_OccNeRF"]
 	path = GroundedSAM_OccNeRF
 	url = https://github.com/JunchengYan/GroundedSAM_OccNeRF.git
+[submodule "GroundedSAM_GaussianOcc"]
+	path = GroundedSAM_GaussianOcc
+	url = https://github.com/Fang2896/GroundedSAM_GaussianOcc.git
