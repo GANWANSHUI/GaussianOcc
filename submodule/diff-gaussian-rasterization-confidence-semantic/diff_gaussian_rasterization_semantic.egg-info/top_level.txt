@@ -1,1 +1,0 @@
-diff_gaussian_rasterization_semantic
