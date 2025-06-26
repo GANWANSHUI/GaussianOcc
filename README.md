@@ -1,4 +1,4 @@
-# GaussianOcc
+# GaussianOcc (ICCV 2025)
 
 **[Project Page](https://ganwanshui.github.io/GaussianOcc/) | [Arxiv](http://arxiv.org/abs/2408.11447) | [Data](https://github.com/GANWANSHUI/GaussianOcc)**
 
