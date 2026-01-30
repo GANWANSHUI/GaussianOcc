@@ -3,7 +3,7 @@
 import math
 import copy
 import numpy as np
-import torch, pdb
+import torch
 from torch.utils.cpp_extension import load
 from tqdm import tqdm
 from prettytable import PrettyTable
@@ -121,7 +121,6 @@ def process_one_sample(sem_pred, lidar_rays, output_origin, instance_pred=None, 
 
         coord_index = coord_index.long()
 
-        # pdb.set_trace()
         pred_label = sem_pred[coord_index[:, 0], coord_index[:, 1], coord_index[:, 2]][:, None]  # [N, 1]        
         pred_dist = pred_dist[0, :, None].cpu()
 

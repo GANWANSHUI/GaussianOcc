@@ -11,7 +11,6 @@ import skimage.transform
 import numpy as np
 import PIL.Image as pil
 import pickle
-import pdb
 import cv2
 import torch
 from pathlib import Path

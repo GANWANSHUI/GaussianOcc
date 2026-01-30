@@ -1,5 +1,3 @@
-import pdb
-
 import torch
 import cv2
 import numpy as np
@@ -73,9 +71,6 @@ def setup_opengl_proj(w, h, k, c2w, near=0.01, far=100):
     # tanfovx = np.rad2deg(2 * np.arctan2(w, 2 * fx))
     # tanfovy = np.rad2deg(2 * np.arctan2(h, 2 * fy))
 
-   
-
-    # pdb.set_trace()
     # 2*math.atan(w/(2*fx))
     # 2*math.atan(h/(2*fy))
 
@@ -624,7 +619,6 @@ def square_distance(src, dst):
 
 if __name__ == '__main__':
 
-    # pdb.set_trace()
     import time
 
     A = torch.ones((1, 10000, 3)).to('cuda')

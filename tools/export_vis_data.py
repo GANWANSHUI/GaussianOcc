@@ -6,7 +6,6 @@ from tqdm import tqdm
 from pyquaternion import Quaternion
 from nuscenes.nuscenes import NuScenes
 from nuscenes.utils.splits import create_splits_scenes
-import pdb
 
 
 dataroot = 'data/nuscenes'
@@ -14,7 +13,6 @@ nusc = NuScenes(version='v1.0-trainval', dataroot=dataroot, verbose=False)
 splits = create_splits_scenes()
 val_scenes = splits['val']  # Define your own split.
 
-# pdb.set_trace()
 
 print('Number of scenes in val split:', len(val_scenes))
 

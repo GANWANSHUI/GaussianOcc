@@ -6,7 +6,6 @@
 
 from __future__ import absolute_import, division, print_function
 
-import pdb
 import time
 
 import torch
@@ -212,7 +211,6 @@ class VolumeDecoder(nn.Module):
     def grid_sampler(self, xyz, *grids, align_corners=True, avail_mask=None, vis=False):
         '''Wrapper for the interp operation'''
         
-        # pdb.set_trace()
         
         if self.opt.semantic_sample_ratio < 1.0 and self.use_semantic and not vis:
             group_size = int(1.0 / self.opt.semantic_sample_ratio)
@@ -221,7 +219,6 @@ class VolumeDecoder(nn.Module):
         else:
             xyz_sem = None
 
-        # pdb.set_trace()
 
         if avail_mask is not None:
             if self.opt.contracted_coord:
@@ -269,7 +266,7 @@ class VolumeDecoder(nn.Module):
             ret_sem = F.grid_sample(grid_sem, ind_norm_sem, mode='bilinear', align_corners=align_corners).reshape(grid_sem.shape[1], -1).T.reshape(*shape_sem, grid_sem.shape[1])
             ret_geo = F.grid_sample(grid_geo, ind_norm, mode='bilinear', align_corners=align_corners).reshape(grid_geo.shape[1], -1).T.reshape(*shape, grid_geo.shape[1])
 
-            # pdb.set_trace()
+
 
             return ret_geo.squeeze(), avail_mask, ret_sem, avail_mask_sem, group_num, group_size
 
@@ -316,7 +313,7 @@ class VolumeDecoder(nn.Module):
             
             K, C2W, pc = self.prepare_gs_attribute(Voxel_feat, inputs)
 
-            # pdb.set_trace()
+          
             depth, rgb_marched = self.get_splatting_rendering(K, C2W, pc, inputs)
 
             if self.opt.use_semantic:
@@ -404,7 +401,7 @@ class VolumeDecoder(nn.Module):
         else:
             raise NotImplementedError
         
-        # pdb.set_trace()
+     
         if self.use_semantic:
             if self.opt.semantic_sample_ratio < 1.0:
                 semantic_out = torch.zeros(mask_sem.shape + (self.semantic_classes, )).to(device=device, dtype=dtype)
@@ -501,7 +498,7 @@ class VolumeDecoder(nn.Module):
 
         vox_grid, Z, Y, X = self.gs_vox_util.get_voxel_grid(cam_center=inputs['all_cam_center'], )
 
-        # pdb.set_trace()
+   
         if self.opt.gs_sample != 0:
            
             sample_ret = self.grid_sampler(vox_grid, Voxel_feat_list)
@@ -557,7 +554,7 @@ class VolumeDecoder(nn.Module):
         pc['active_sh_degree'] = 0
         pc['confidence'] = torch.ones_like(pc['get_opacity'])
 
-        # pdb.set_trace()
+      
         if self.use_semantic:
             pc['semantic'] = gs_attribute
 
@@ -597,7 +594,7 @@ class VolumeDecoder(nn.Module):
                 pc_i = {}
                 pc_i['active_sh_degree'] = pc['active_sh_degree']
 
-                # pdb.set_trace()
+             
 
                 if j == 0:
                     fov_mask = pc['get_xyz_grid'][:,0] > C2W[j][0, 3]
@@ -635,7 +632,7 @@ class VolumeDecoder(nn.Module):
 
     def get_semantic_gt_loss(self, voxel_semantics, pred, mask_camera):
 
-        # pdb.set_trace()
+   
 
         preds = pred[0, ...].permute(1, 2, 3, 0) # 200, 200, 16, 18
 
@@ -681,7 +678,7 @@ class VolumeDecoder(nn.Module):
             # 3D aggregation
             Voxel_feat_list = self._3DCNN(Voxel_feat)
             
-        # pdb.set_trace()
+
         if self.opt.render_type == 'gt':
             preds = Voxel_feat_list[0]
             voxel_semantics = inputs['semantics_3d']
@@ -747,13 +744,12 @@ class VolumeDecoder(nn.Module):
 
             outputs["pred_occ_logits"] = pred_occ_logits.reshape(Z, W, H, -1).permute(3, 2, 1, 0).unsqueeze(0)
 
-        # pdb.set_trace()
         return self.outputs
 
 
 def total_variation(v, mask=None):
 
-    # pdb.set_trace()
+
     tv2 = v.diff(dim=2).abs()
     tv3 = v.diff(dim=3).abs()
     tv4 = v.diff(dim=4).abs()

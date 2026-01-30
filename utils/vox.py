@@ -1,4 +1,3 @@
-import pdb
 import math
 
 import numpy as np
@@ -146,7 +145,6 @@ class Vox_util(nn.Module):
             
         else:
             ref_T_mem = self.get_ref_T_mem(B, Z, Y, X, assert_cube=assert_cube, device=xyz_mem.device)
-            # pdb.set_trace()
             xyz_ref = geom.apply_4x4(ref_T_mem, xyz_mem)
 
         return xyz_ref

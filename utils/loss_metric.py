@@ -7,7 +7,6 @@
 from __future__ import absolute_import, division, print_function
 import os
 import hashlib
-import pdb
 import zipfile
 from six.moves import urllib
 import numpy as np
@@ -35,7 +34,7 @@ class silog_loss(nn.Module):
 
             depth_est = (1/depth_est) * opt.max_depth
             depth_gt = (1/depth_gt) * opt.max_depth
-            # pdb.set_trace()
+
             # depth_est = 1 / depth_est
             # depth_gt = 1 / depth_gt
             return F.l1_loss(depth_est[mask], depth_gt[mask], size_average=True)
@@ -299,7 +298,6 @@ def compute_mIoU(pred, label, n_classes=2):
 
     mIoUs = per_class_iu(hist)  # 计算逐类别mIoU值
 
-    # pdb.set_trace()
     # return (np.nanmean(mIoUs) * 100, 3)
     # print('mIOUs', mIoUs)
     # for ind_class in range(n_classes):  # 逐类别输出一下mIoU值

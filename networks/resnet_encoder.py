@@ -9,7 +9,7 @@ import torchvision
 import torchvision.models as models
 import torch.utils.model_zoo as model_zoo
 from .submodule import *
-import pdb
+
 
 
 class ResNetMultiImageInput(models.ResNet):
@@ -163,7 +163,6 @@ class Encoder_res101(nn.Module):
         self.mean = torch.as_tensor([0.485, 0.456, 0.406]).reshape(1, 3, 1, 1).float().cuda()
         self.std = torch.as_tensor([0.229, 0.224, 0.225]).reshape(1, 3, 1, 1).float().cuda()
 
-        # pdb.set_trace()
 
         if network_type == '101':
             resnet = torchvision.models.resnet101(pretrained=True)
@@ -204,7 +203,6 @@ class Encoder_res101(nn.Module):
 
         x1 = self.backbone(x) # 1/8 channel: 512
 
-        # pdb.set_trace()
         x2 = self.layer3(x1) # 1/16  channel: 1024
 
         x3 = self.upsampling_layer(x2, x1) # 1/8  512

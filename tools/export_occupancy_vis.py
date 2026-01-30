@@ -1,6 +1,5 @@
 import os
 import argparse
-import pdb
 
 import torch
 import numpy as np
@@ -46,13 +45,10 @@ def gridcloud3d(B, Z, Y, X, device='cpu'):
     y = torch.reshape(grid_y, [B, -1])
     z = torch.reshape(grid_z, [B, -1])
 
-    # pdb.set_trace()
     # these are B x N
     xyz = torch.stack([x, y, z], dim=2)
     # here is stack in order with xyz
     # this is B x N x 3
-
-    # pdb.set_trace()
     return xyz
 
 
@@ -131,7 +127,7 @@ def visualize_occ_dict(output_dict, offscreen=True, render_w=1600):
         # the first one will be broken, so we repeat it
         # figure = mlab.figure(size=(600, 600), bgcolor=(1, 1, 1))
         figure = mlab.figure(size=(render_w, render_w/16*9), bgcolor=(1, 1, 1))
-        # pdb.set_trace()
+       
         plt_plot_fov = mlab.points3d(
             fov_voxels[:, 0],
             fov_voxels[:, 1],
@@ -148,8 +144,6 @@ def visualize_occ_dict(output_dict, offscreen=True, render_w=1600):
         plt_plot_fov.module_manager.scalar_lut_manager.lut.table = colors
 
         scene = figure.scene
-
-        # pdb.set_trace()
 
         if i < 6:
             position = cam_positions[i]

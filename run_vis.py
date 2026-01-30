@@ -273,7 +273,7 @@ class Runer:
                         surround_view_up = image_left_front_right
                         surround_view_down = image_left_rear_right
                     
-                    # pdb.set_trace()
+                  
                     scene_name = data['scene_name'][0]
                     frame_idx = data['frame_idx'][0]
 

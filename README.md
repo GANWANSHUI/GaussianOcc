@@ -4,7 +4,7 @@
 
 > GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting
 > 
-> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/)`
+> [Wanshui Gan*](https://ganwanshui.github.io/), [Fang Liu*](https://github.com/Fang2896), [Hongbin Xu](https://scholar.google.com.hk/citations?user=mRC_emoAAAAJ&hl=zh-CN), [Ningkai Mo](https://scholar.google.com/citations?user=4cesyTkAAAAJ&hl=en), [Naoto Yokoya](https://naotoyokoya.com/)
 > 
 > 📖 中文解读（第三方）: [自动驾驶之心](https://zhuanlan.zhihu.com/p/716013147?utm_psn=1810287323511918592)
 
@@ -85,7 +85,7 @@ ln -s  path_to_ddad GaussianOcc/data
 
 ### nuScenes
 
-1. Download nuScenes V1.0 full dataset data from [nuScenes](https://www.nuscenes.org/nuscenes#download) and link the data folder to `./data/nuscenes/nuscenes/`.
+1. Download nuScenes V1.0 full dataset data from [nuScenes](https://www.nuscenes.org/nuscenes#download) and link the data folder to `./data/nuscenes/`.
 2. Download the ground truth occupancy labels from [Occ3d](https://tsinghua-mars-lab.github.io/Occ3D/) and unzip the `gts.tar.gz` to `./data/nuscenes/gts`. Note that we only use the 3d occupancy labels for validation.
 3. Generate the ground truth depth maps for validation:
 

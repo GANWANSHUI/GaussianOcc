@@ -3,7 +3,7 @@ import glob
 import mmcv
 import argparse
 import numpy as np
-import torch, pdb
+import torch
 from torch.utils.data import DataLoader
 
 from utils.rayiou_metric import main_rayiou
@@ -47,8 +47,7 @@ def main(args):
     occ_gts = []
     occ_preds = []
 
-    # pdb.set_trace()
-
+   
     # data_infos = data_infos[:50]
 
     for idx, batch in enumerate(DataLoader(EgoPoseDataset(data_infos), num_workers=8)):
@@ -75,14 +74,14 @@ def main(args):
     
     result, table = main_rayiou(occ_preds, occ_gts, lidar_origins, occ_class_names=occ_class_names)
 
-    # pdb.set_trace()
+   
 
     # log_path = args.pred_dir
     log_path = os.path.split(os.path.split(args.pred_dir)[0])[0]
 
     with open(os.path.join(log_path, 'log.txt'), 'a') as f:
         f.writelines(str(result) + '\n')
-        # pdb.set_trace()
+      
         table = f'metric table:{table}'
         f.writelines(table + '\n')
         

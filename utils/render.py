@@ -30,7 +30,6 @@ def get_rays(H, W, K, c2w, inverse_y, flip_x, flip_y, mode='center'):
 
     # Rotate ray directions from camera frame to the world frame
 
-    # pdb.set_trace()
     rays_d = torch.sum(dirs[..., np.newaxis, :] * c2w[:3, :3], -1)  # dot product, equals to: [c2w.dot(dir) for dir in dirs]
 
     # Translate camera frame's origin to the world frame. It is the origin of all rays.
@@ -66,7 +65,6 @@ def get_rays_of_a_view(H, W, K, c2w, ndc, inverse_y, flip_x, flip_y, mode='cente
         rays_d_all = torch.zeros(6, H, W, 3)
 
         for i in range (6):
-            # pdb.set_trace()
             rays_o, rays_d = get_rays(H, W, K[0, i, ...], c2w[0, i, ...], inverse_y=inverse_y, flip_x=flip_x, flip_y=flip_y, mode=mode)
             rays_o_all[i,...] = rays_o
             rays_d_all[i,...] = rays_d

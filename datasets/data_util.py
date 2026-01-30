@@ -1,6 +1,5 @@
 # Copyright (c) 2023 42dot. All rights reserved.
 import os
-import pdb
 import numpy as np
 import PIL.Image as pil
 import cv2

@@ -12,16 +12,17 @@ from pyquaternion import Quaternion
 
 class DepthGenerator(object):
     def __init__(self, split='train'):
-        self.data_path = 'data/nuscenes/nuscenes'
+        self.data_path = 'data/nuscenes'
         version = 'v1.0-trainval'
-        self.nusc = NuScenes(version=version,
-                            dataroot=self.data_path, verbose=False)
+        self.nusc = NuScenes(version=version, dataroot=self.data_path, verbose=False)
 
         with open(f'data/nuscenes/nuscenes_infos_{split}.pkl', 'rb') as f:
             self.data = pickle.load(f)['infos']
 
-        self.save_path = 'data/nuscenes/nuscenes_depth'
+        self.save_path = 'data/nuscenes/depth_full'
+
         self.camera_names = ['CAM_FRONT', 'CAM_FRONT_LEFT', 'CAM_BACK_LEFT', 'CAM_BACK', 'CAM_BACK_RIGHT', 'CAM_FRONT_RIGHT']
+
 
         for camera_name in self.camera_names:
             os.makedirs(os.path.join(self.save_path, 'samples', camera_name), exist_ok=True)
@@ -144,10 +145,15 @@ class DepthGenerator(object):
             print('finish processing index = {:06d}'.format(index))
 
         sample_id_list = list(range(len(self.data)))
+
         with futures.ThreadPoolExecutor(num_workers) as executor:
             executor.map(process_one_sample, sample_id_list)
 
 
 if __name__ == "__main__":
+
     model = DepthGenerator('val')
+    model()
+
+    model = DepthGenerator('train')
     model()

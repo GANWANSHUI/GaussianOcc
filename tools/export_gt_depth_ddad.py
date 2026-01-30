@@ -7,7 +7,6 @@ import random
 from tqdm import tqdm
 import copy
 import numpy as np
-import pdb
 import pickle
 
 root_path = sys.argv[2]
@@ -45,7 +44,6 @@ for j in range (len(dataset)):
         if t not in to_save.keys():
             to_save[t] = copy.deepcopy(index_info[t])
 
-        # pdb.set_trace()
         save_path = os.path.join(save_path, scene_id, 'depth', m['datum_name'], t + '.npy')
         np.save(save_path, m['depth'])
 

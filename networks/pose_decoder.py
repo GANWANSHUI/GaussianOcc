@@ -8,7 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 import torch
 import torch.nn as nn
-import pdb
+
 # from pytorch3d import transforms
 from pytorch3d.transforms.rotation_conversions import matrix_to_axis_angle
 from collections import OrderedDict
@@ -63,7 +63,7 @@ class PoseDecoder(nn.Module):
 
     def forward(self, input_features, joint_pose=False, coarse_RT=None):
 
-        # pdb.set_trace()
+   
         B, C, H, W = input_features[0][-1].shape
         if joint_pose:
             last_features = [f[-1].reshape(-1, 6, C, H, W).mean(1) for f in input_features]
@@ -84,7 +84,7 @@ class PoseDecoder(nn.Module):
             coarse_translation = coarse_RT[:3, 3]
             cat_rt = torch.cat([coarse_axisangle, coarse_translation], 0)
 
-            # pdb.set_trace()
+      
 
             out = self.pool1(out)
             out = self.finial_conv(out)
@@ -101,7 +101,7 @@ class PoseDecoder(nn.Module):
             # out[..., :3][:, 0] = coarse_axisangle
             # out[..., 3:][:, 0] = coarse_translation
 
-            # pdb.set_trace()
+         
             # residual refine 
             # out[..., :3] += coarse_axisangle
             # out[..., 3:] += coarse_translation

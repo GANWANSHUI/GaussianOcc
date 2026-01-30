@@ -10,7 +10,7 @@
 #
 import matplotlib.pyplot as plt
 import torch
-import math, pdb
+import math
 import numpy as np
 
 # no semantic 
@@ -70,8 +70,7 @@ def splatting_render(viewpoint_camera, pc, scaling_modifier = 1.0,
     bg_color = torch.tensor([0., 0., 0.]).cuda()
 
     confidence = pc['confidence']
-    
-    # pdb.set_trace()
+
     if not opt.use_semantic:
         if opt.render_type == '3dgs':
             raster_settings = diff_3d_gaussian_rasterization.GaussianRasterizationSettings(
@@ -142,7 +141,7 @@ def splatting_render(viewpoint_camera, pc, scaling_modifier = 1.0,
 
     # Rasterize visible Gaussians to image, obtain their radii (on screen).
     # rasterizer return: color, feature_map, radii, depth, alpha
-    # pdb.set_trace()
+
 
     rendered_image, radii, depth, alpha = rasterizer(
         means3D = means3D,

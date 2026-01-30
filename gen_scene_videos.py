@@ -1,13 +1,11 @@
 import os
 import cv2
 import argparse
-import pdb
+
 from tools.export_occupancy_vis import visualize_occ_dict
 
 
 def create_video_from_images(input_folder, sem_only=False):
-
-    # pdb.set_trace()
 
     rgb_depth_occ_path = input_folder + '_vis'
 
@@ -38,7 +36,6 @@ def create_video_from_images(input_folder, sem_only=False):
     else:
         out = cv2.VideoWriter(output_video, fourcc, fps, (width, height * 3))
 
-    # pdb.set_trace()
     # if 'ddad' in input_folder:
     #     num_frame = len(image_files)
     # else:
@@ -63,7 +60,7 @@ def create_video_from_images(input_folder, sem_only=False):
         occ_br = os.path.join(input_folder, '{:03d}-out.npy-back_right.jpg'.format(i))
         occ_down = cv2.hconcat([cv2.imread(occ_bl), cv2.imread(occ_b), cv2.imread(occ_br)])
 
-        # pdb.set_trace()
+    
         # frame = cv2.vconcat([image_up, occ_up, image_down, occ_down])
 
         # depth
@@ -82,7 +79,6 @@ def create_video_from_images(input_folder, sem_only=False):
         except:
             pass
 
-            # pdb.set_trace()
 
     out.release()
     cv2.destroyAllWindows()
@@ -97,7 +93,7 @@ if __name__ == "__main__":
     dict_list.sort()
 
     for dict_name in dict_list:
-        # pdb.set_trace()
+      
         if dict_name.endswith('.npy'):
             # if dict_name[:3] == '006':
             print('proceding:', dict_name)

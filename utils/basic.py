@@ -1,5 +1,3 @@
-import pdb
-
 import torch
 EPS = 1e-6
 
@@ -65,7 +63,6 @@ def meshgrid3d(B, Z, Y, X, stack=False, norm=False, device='cuda'):
     grid_x = grid_x.repeat(B, Z, Y, 1)
     # here repeat is in the order with ZYX
 
-    # pdb.set_trace()
     if norm:
         grid_z, grid_y, grid_x = normalize_grid3d(
             grid_z, grid_y, grid_x, Z, Y, X)
@@ -88,13 +85,13 @@ def gridcloud3d(B, Z, Y, X, norm=False, device='cuda'):
     y = torch.reshape(grid_y, [B, -1])
     z = torch.reshape(grid_z, [B, -1])
 
-    # pdb.set_trace()
+
     # these are B x N
     xyz = torch.stack([x, y, z], dim=2)
     # here is stack in order with xyz
     # this is B x N x 3
 
-    # pdb.set_trace()
+
     return xyz
 
 

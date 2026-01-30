@@ -5,11 +5,10 @@ import numpy as np
 import os, cv2
 import matplotlib.pyplot as plt
 import math
-import pdb
 
 def depths_to_points(view, depthmap):
 
-    # pdb.set_trace()
+  
     c2w = (view['world_view_transform'].T).inverse()
     W, H = view['image_width'], view['image_height']
     ndc2pix = torch.tensor([

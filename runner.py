@@ -13,7 +13,7 @@ import shutil
 import pickle
 from copy import deepcopy
 
-import cv2, pdb
+import cv2
 import torch.optim as optim
 import torch.distributed as dist
 from torch.utils.data import DataLoader
@@ -79,7 +79,7 @@ class Runer:
         self.opt = options
         self.opt.B = self.opt.batch_size // self.opt.cam_N
         
-        # pdb.set_trace()
+   
         if 'gs' in self.opt.render_type:
             self.opt.semantic_sample_ratio = 1.0
 
@@ -94,7 +94,6 @@ class Runer:
             self.opt.max_depth_test = 200
             self.opt.rayiou = 'No'
       
-        # pdb.set_trace()
         
         self.log_path = osp.join(self.opt.log_dir, self.opt.model_name + '_' + self.opt.data_type , 'seg_{}_{}_{}_{}_pose_{}_{}_mask_{}'.format(
         self.opt.use_semantic, self.opt.semantic_loss_weight, self.opt.weight_entropy_last, self.opt.weight_distortion,
@@ -192,7 +191,6 @@ class Runer:
 
             self.load_model()
 
-        # pdb.set_trace()
         
         for key in self.models.keys():
             self.models[key] = DDP(self.models[key], device_ids=[self.local_rank], output_device=self.local_rank,
@@ -224,10 +222,9 @@ class Runer:
 
         self.opt.batch_size = self.opt.batch_size // self.opt.cam_N
 
-        # pdb.set_trace()
 
         if self.opt.dataset == 'nusc':
-            # pdb.set_trace()
+         
             # nusc = NuScenes(version='v1.0-trainval', dataroot=osp.join(self.opt.dataroot, 'nuscenes'), verbose=False)
             nusc = NuScenes(version='v1.0-trainval', dataroot=osp.join(self.opt.dataroot), verbose=False)
 
@@ -245,7 +242,7 @@ class Runer:
 
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset, shuffle=True)
 
-        # pdb.set_trace()
+ 
         self.train_loader = DataLoader(
             train_dataset, self.opt.batch_size, collate_fn=self.my_collate,
             num_workers=self.opt.num_workers, pin_memory=True, drop_last=True, sampler=train_sampler)
@@ -561,7 +558,7 @@ class Runer:
             assert num_sum == self.num_val
 
             if evl_rayiou == 'yes':
-                # pdb.set_trace()
+             
                 str=('python ray_metrics.py --pred_dir {}'.format(osp.join(os.getcwd(), self.log_path, 'visual_feature', 'final'))) 
                 # str=('python ray_metrics.py --pred_dir {}'.format('/home/wsgan/project/bev/OccNeRF/logs/0817_rerun_debug_all/seg_True_0.02_0.1_0.1_pose_No_yes_mask_False/type_prob_0.0_s_0.2_180_l_self_en_w_0.1_ep_12_f_False_infi_True_cont_True_depth_0.1_80.0/exp_2024_08_17_01_34_08/visual_feature/final')) 
                 # os.chdir('/home/wsgan/project/bev/CVPR2024-Occupancy-Flow-Challenge/SparseOcc')
@@ -648,7 +645,7 @@ class Runer:
 
                 eps_time = eps_time # - output['render_time']
 
-                # pdb.set_trace()
+               
                 
                 total_time.append(eps_time)
 
@@ -656,7 +653,7 @@ class Runer:
 
                     if self.opt.use_semantic:
                         # mIoU, class IoU
-                        # pdb.set_trace()
+                      
                         semantics_pred = output['pred_occ_logits'][0].argmax(0)
 
                         occ_eval_metrics.add_batch(
@@ -691,7 +688,7 @@ class Runer:
 
                         occ_pred[free_mask] = 17   
 
-                        # pdb.set_trace()
+                    
 
                         occ_eval_metrics.add_batch(
                             semantics_pred=occ_pred.detach().cpu().numpy(),
@@ -700,7 +697,7 @@ class Runer:
                             mask_lidar=None)
                         
 
-                        # pdb.set_trace()
+                      
                         if self.local_rank == 0 and idx % 20 == 0:
                             _, _, f1, _, _, cd, _ = occ_eval_metrics.count_fscore()
                             print('f1:', f1)
@@ -797,7 +794,7 @@ class Runer:
                     elif self.opt.cam_N == 1:
                         surround_view = np.concatenate((concated_image_list[0], concated_depth_list[0]), axis=0)
 
-                    # pdb.set_trace()
+                
                     os.makedirs(osp.join(self.log_path, 'visual_rgb_depth', 'epoch_{}'.format(epoch)), exist_ok=True)
                     cv2.imwrite('{}/visual_rgb_depth/epoch_{}/{}-{}.jpg'.format(self.log_path, epoch, self.local_rank, idx), surround_view)
 
@@ -858,8 +855,6 @@ class Runer:
 
         scaler = torch.cuda.amp.GradScaler(enabled=self.opt.use_fp16, init_scale=2**8)
         len_loader = len(self.train_loader)
-
-        # pdb.set_trace()
         
         for batch_idx, inputs in enumerate(self.train_loader):
             before_op_time = time.time()
@@ -875,7 +870,7 @@ class Runer:
             early_phase = batch_idx % self.opt.log_frequency == 0 and self.step < 2000
             late_phase = self.step % 200 == 0
 
-            # pdb.set_trace()
+    
             if early_phase or late_phase or (self.epoch == (self.opt.num_epochs - 1)):
                 self.log_time(batch_idx, len_loader, duration, losses)
 
@@ -896,7 +891,6 @@ class Runer:
         """Pass a minibatch through the network and generate images and losses
         """
 
-        # pdb.set_trace()
 
         __p = lambda x: basic.pack_seqdim(x, self.opt.B)  # merge batch and number of cameras
         __u = lambda x: basic.unpack_seqdim(x, self.opt.B)
@@ -948,7 +942,7 @@ class Runer:
         if self.opt.self_supervise != 'gt': # true
 
             self.generate_images_pred(inputs, outputs)
-            # pdb.set_trace()
+         
             losses = self.compute_self_supervised_losses(inputs, outputs, losses)
 
             losses['loss'] += losses['self_loss']
@@ -1000,7 +994,7 @@ class Runer:
             trans = transformation_from_parameters(axisangle[:, 0], translation[:, 0], invert=(f_i < 0))
             trans = trans.unsqueeze(1).repeat(1, 6, 1, 1).reshape(-1, 4, 4) # torch.Size([6, 4, 4]
 
-            # pdb.set_trace()
+       
             outputs[("cam_T_cam", 0, f_i)] = torch.linalg.inv(inputs["pose_spatial"]) @ trans @ inputs["pose_spatial"]
 
         return outputs
@@ -1018,7 +1012,7 @@ class Runer:
 
             depth_pred = F.interpolate(depth_pred, size=[self.opt.height_ori, self.opt.width_ori], mode="bilinear", align_corners=False).squeeze(1)
 
-            # pdb.set_trace()
+         
             no_aug_loss = self.silog_criterion.forward(depth_pred, depth_gt, mask.to(torch.bool), self.opt)
 
             singel_scale_total_loss += no_aug_loss
@@ -1114,7 +1108,7 @@ class Runer:
             else:
                 source_scale = 0
 
-            # pdb.set_trace()
+       
             disp = outputs[("disp", scale)]
 
             # print('Scale {},  disp min {}, max {}'.format(scale, disp[0].min(), disp[0].max()))
@@ -1181,7 +1175,7 @@ class Runer:
             else:
                 combined = reprojection_loss
 
-            # pdb.set_trace()
+          
             if combined.shape[1] == 1:
                 to_optimise = combined
             else:
@@ -1205,7 +1199,7 @@ class Runer:
             semantic_loss = 0.0
 
             if self.opt.use_semantic and scale == 0:
-                # pdb.set_trace()
+             
                 pred_semantic = outputs[("semantic", 0)].float()
                 target_semantic = inputs["semantic"]
                 
@@ -1215,14 +1209,14 @@ class Runer:
                 
                 target_semantic = F.interpolate(target_semantic.unsqueeze(1).float(), size=pred_semantic.shape[1:3], mode="nearest").squeeze(1)
                 
-                # pdb.set_trace()
+           
                 if self.opt.use_fix_mask:
                     ddad_mask = F.interpolate(inputs["mask"][:,:1, :, :], size=pred_semantic.shape[1:3], mode="nearest").squeeze(1)
                     ddad_mask = ddad_mask.bool()
                     semantic_loss += self.sem_criterion(pred_semantic[ddad_mask], target_semantic[ddad_mask].long())
                 
                 else:
-                    # pdb.set_trace()
+                  
                     semantic_loss += self.sem_criterion(pred_semantic.view(-1, self.opt.semantic_classes), target_semantic.view(-1).long())
                 
                 semantic_loss = self.opt.semantic_loss_weight * semantic_loss
