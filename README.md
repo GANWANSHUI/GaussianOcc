@@ -99,8 +99,8 @@ ln -s  path_to_ddad GaussianOcc/data
 ### DDAD
 
 * Please download the official [DDAD dataset](https://tri-ml-public.s3.amazonaws.com/github/DDAD/datasets/DDAD.tar) and place them under `data/ddad/raw_data`. You may refer to official [DDAD repository](https://github.com/TRI-ML/DDAD) for more info and instructions.
-* Please download [metadata](https://cloud.tsinghua.edu.cn/f/50cb1ea5b1344db8b51c/?dl=1) of DDAD and place these pkl files in `datasets/ddad`.
-* We provide annotated self-occlusion masks for each sequences. Please download [masks](https://cloud.tsinghua.edu.cn/f/c654cd272a6a42c885f9/?dl=1) and place them in `data/ddad/mask`.
+* Please download [metadata](https://www.dropbox.com/scl/fi/9gr0pr269g5qqh3iq370g/ddad.zip?rlkey=55i1zcfawu2dju68wya58rhv2&e=1&st=du6townr&dl=0) of DDAD and place these pkl files in `datasets/ddad`.
+* We provide annotated self-occlusion masks for each sequences. Please download [masks](https://www.dropbox.com/scl/fi/9gr0pr269g5qqh3iq370g/ddad.zip?rlkey=55i1zcfawu2dju68wya58rhv2&e=1&st=du6townr&dl=0) and place them in `data/ddad/mask`.
 * Export depth maps for evaluation
 * The ddad semantic map generation is similar to nuscenes above. We also provide the generation code of DDAD dataset. Please refer the [GroundedSAM_GaussianOcc](https://github.com/Fang2896/GroundedSAM_GaussianOcc).
 
@@ -188,11 +188,12 @@ Recent related works:
 If you find this repository/work helpful in your research, welcome to cite our papers and give a ⭐.
 
 ```
-@article{gan2024gaussianocc,
-  title={GaussianOcc: Fully Self-supervised and Efficient 3D Occupancy Estimation with Gaussian Splatting},
+@inproceedings{gan2025gaussianocc,
+  title={Gaussianocc: Fully self-supervised and efficient 3d occupancy estimation with gaussian splatting},
   author={Gan, Wanshui and Liu, Fang and Xu, Hongbin and Mo, Ningkai and Yokoya, Naoto},
-  journal={arXiv preprint arXiv:2408.11447},
-  year={2024}
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={28980--28990},
+  year={2025}
 }
 
 @article{gan2024comprehensive,
